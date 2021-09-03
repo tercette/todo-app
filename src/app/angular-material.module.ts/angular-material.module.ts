@@ -10,8 +10,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
-  
-  imports: [
+
+  exports: [
     CommonModule,
     MatTableModule,
     MatButtonModule,
