@@ -3,8 +3,7 @@ import { DeleteTaskHandler } from '../../business-rules/delete-task.handler';
 import { ITask } from './../../models/itask';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-
-
+import { DialogService } from '../../shared/Services/dialog.service';
 
 @Component({
   selector: 'app-task-list-page',
@@ -17,14 +16,13 @@ export class TaskListPageComponent implements OnInit {
   // Com isso eu uso o tipo MatTable
   @ViewChild(MatTable) table: MatTable<ITask> | undefined;
 
-
-
   tasks: ITask[] = [];
   displayedColumns = ['id', 'title', 'description', 'done', 'action'];
 
   constructor(
     private getTasksHandler: GetTasksHandler,
-    private deleteTaskHandler: DeleteTaskHandler
+    private deleteTaskHandler: DeleteTaskHandler,
+    private dialogService: DialogService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -40,14 +38,20 @@ export class TaskListPageComponent implements OnInit {
     }
   }
 
+  // deletando a tarefa da api
   async deleteTask(task: ITask): Promise<void> {
-    // deletando a tarefa da api
-    await this.deleteTaskHandler.execute(task.id || '');
     // removendo a tarefa do array de tarefas
-    this.tasks.splice(this.tasks.indexOf(task), 1);
-    // renderizando novamente as linhas da tabela para a tarefa que acabou
-    // de ser excluída não apareça
-    // com isso não preciso recarregar a tela novamente
-    this.table?.renderRows();
+    this.dialogService
+    .openConfirmDialog('Are you really want to delete?')
+    .afterClosed()
+    .subscribe(async (res) => {
+      if (res) {
+    await this.deleteTaskHandler.execute(task.id || '');
+          this.tasks.splice(this.tasks.indexOf(task), 1);
+          // renderizando novamente as linhas da tabela para a tarefa que acabou
+          // de ser excluída não apareça
+          this.table?.renderRows();
+        }});
+
   }
 }
