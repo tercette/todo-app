@@ -12,6 +12,7 @@ import { TaskFormPageComponent } from './tasks/pages/task-form-page/task-form-pa
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatConfirmDialogComponent } from '../app/tasks/business-rules/mat-confirm-dialog/mat-confirm-dialog.component';
+import { ConfirmationComponent } from './core/services/confirmation.component';
 
 
 
@@ -21,7 +22,8 @@ import { MatConfirmDialogComponent } from '../app/tasks/business-rules/mat-confi
     AppComponent,
     TaskListPageComponent,
     TaskFormPageComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

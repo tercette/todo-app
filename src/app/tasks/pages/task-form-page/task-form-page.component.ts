@@ -5,7 +5,7 @@ import { CreateTaskHandler } from './../../business-rules/create-task.handler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DialogService } from '../../shared/Services/dialog.service';
+
 
 @Component({
   selector: 'app-task-form-page',
@@ -40,7 +40,7 @@ export class TaskFormPageComponent implements OnInit {
     private createTaskHandler: CreateTaskHandler,
     private updateTaskHandler: UpdateTaskHandler,
     private getTaskHandler: GetTaskHandler,
-    private dialogService: DialogService
+
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -53,7 +53,7 @@ export class TaskFormPageComponent implements OnInit {
 
   async loadTask(): Promise<void> {
     const response = await this.getTaskHandler.execute(this.taskId || '');
-    
+
     if (response) {
       this.pageTitle = 'Editando tarefa';
       // atualizando o formulário com os valores retornados pela api
@@ -72,7 +72,7 @@ export class TaskFormPageComponent implements OnInit {
       ...this.form.value, // pegando todos os valores do formulário
       id: this.taskId, // atualizando o id caso exista
     };
-    let response: ITask | undefined;
+    let response: ITask | Boolean
 
 
     if (taskToSave.id) {
@@ -81,8 +81,7 @@ export class TaskFormPageComponent implements OnInit {
       response = await this.createTaskHandler.execute(taskToSave);
     }
 
-    if (response) {
-      this.taskId = response.id;
     }
   }
-}
+
+

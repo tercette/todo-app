@@ -1,19 +1,32 @@
 import { TaskRepository } from './../repositories/task.repository';
 import { Injectable } from '@angular/core';
+import { ITask } from '../models/itask';
+import { DialogService } from '../shared/Services/dialog.service';
+import { ConfirmationService } from 'src/app/core/services/confirmation.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeleteTaskHandler {
-  constructor(private repository: TaskRepository) {}
+  constructor(
+    private repository: TaskRepository,
+    private confirmation: ConfirmationService,
+    private dialog: DialogService
+  ) {}
 
-  async execute(id: string): Promise<void> {
-    try {
-      await this.repository.delete(id);
-      /* alert('Tarefa excluída com sucesso.'); */
-    } catch (error) {
-      alert('Erro ao excluir a tarefa');
-      return undefined;
-    }
+  async execute(task: ITask): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.confirmation
+        .confirmDelete(`${task.id} - ${task.title}`)
+        .subscribe(async (confirmed) => {
+          if (confirmed) {
+            await this.repository.delete(task.id);
+            this.dialog
+              .openConfirmDialog('Are you really want to delete/update/create?')
+              .afterClosed();
+          } 
+          resolve(confirmed) ;
+        });
+    });
   }
 }

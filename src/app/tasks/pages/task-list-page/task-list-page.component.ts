@@ -40,18 +40,15 @@ export class TaskListPageComponent implements OnInit {
 
   // deletando a tarefa da api
   async deleteTask(task: ITask): Promise<void> {
+    // deletando a tarefa da api
+    await this.deleteTaskHandler.execute("task.id || ''");
     // removendo a tarefa do array de tarefas
-    this.dialogService
-    .openConfirmDialog('Are you really want to delete?')
-    .afterClosed()
-    .subscribe(async (res) => {
-      if (res) {
-    await this.deleteTaskHandler.execute(task.id || '');
-          this.tasks.splice(this.tasks.indexOf(task), 1);
-          // renderizando novamente as linhas da tabela para a tarefa que acabou
-          // de ser excluída não apareça
-          this.table?.renderRows();
-        }});
-
+    this.tasks.splice(this.tasks.indexOf(task), 1);
+    // renderizando novamente as linhas da tabela para a tarefa que acabou
+    // de ser excluída não apareça
+    // com isso não preciso recarregar a tela novamente
+    this.table?.renderRows();
   }
-}
+
+ }
+
