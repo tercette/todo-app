@@ -1,7 +1,6 @@
 import { TaskRepository } from './../repositories/task.repository';
 import { Injectable } from '@angular/core';
 import { ITask } from '../models/itask';
-import { DialogService } from '../shared/Services/dialog.service';
 import { ConfirmationService } from 'src/app/core/services/confirmation.service';
 
 @Injectable({
@@ -11,22 +10,19 @@ export class UpdateTaskHandler {
   constructor(
     private repository: TaskRepository,
     private confirmation: ConfirmationService,
-    private dialog: DialogService
+
 
   ) {}
 
   async execute(task: ITask): Promise<boolean> {
     return new Promise((resolve) => {
       this.confirmation
-        .confirmDelete(`${task.id} - ${task.title}`)
+        .confirmSave(`${task.id} - ${task.title}`)
         .subscribe(async (confirmed) => {
           if (confirmed) {
             await this.repository.update(task);
-            this.dialog
-              .openConfirmDialog('Are you really want to delete/update/create?')
-              .afterClosed();
+            resolve(confirmed);
           }
-          resolve(confirmed);
         });
     });
   }

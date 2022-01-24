@@ -4,4 +4,5 @@ export interface IConfirmation {
   okText: string;
   okColor: string;
   cancelText: string;
+  panelClass: string
 }

@@ -11,8 +11,9 @@ import { TaskListPageComponent } from '../app/tasks/pages/task-list-page/task-li
 import { TaskFormPageComponent } from './tasks/pages/task-form-page/task-form-page.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatConfirmDialogComponent } from '../app/tasks/business-rules/mat-confirm-dialog/mat-confirm-dialog.component';
+import { MatConfirmDialogComponent } from './core/services/mat-confirm-dialog/mat-confirm-dialog.component';
 import { ConfirmationComponent } from './core/services/confirmation.component';
+import { ReasonPopupComponent } from './core/services/reason-popup/reason-popup.component';
 
 
 
@@ -23,7 +24,8 @@ import { ConfirmationComponent } from './core/services/confirmation.component';
     TaskListPageComponent,
     TaskFormPageComponent,
     MatConfirmDialogComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ReasonPopupComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { DeleteTaskHandler } from '../../business-rules/delete-task.handler';
 import { ITask } from './../../models/itask';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { DialogService } from '../../shared/Services/dialog.service';
+
 
 @Component({
   selector: 'app-task-list-page',
@@ -22,7 +22,7 @@ export class TaskListPageComponent implements OnInit {
   constructor(
     private getTasksHandler: GetTasksHandler,
     private deleteTaskHandler: DeleteTaskHandler,
-    private dialogService: DialogService
+
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -41,7 +41,7 @@ export class TaskListPageComponent implements OnInit {
   // deletando a tarefa da api
   async deleteTask(task: ITask): Promise<void> {
     // deletando a tarefa da api
-    await this.deleteTaskHandler.execute("task.id || ''");
+    await this.deleteTaskHandler.execute(task );
     // removendo a tarefa do array de tarefas
     this.tasks.splice(this.tasks.indexOf(task), 1);
     // renderizando novamente as linhas da tabela para a tarefa que acabou

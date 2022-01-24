@@ -4,13 +4,13 @@ import { IConfirmation } from './iconfirmation';
 
 @Component({
   selector: 'app-confirmation',
-  template: ` <h1 mat-dialog-title>Warning</h1>
-    <mat-dialog-content>
+  template: ` <h1 align="center" mat-dialog-title>Warning</h1>
+    <mat-dialog-content >
       <p [innerHTML]="data.message"></p>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button [mat-dialog-close]="false">{{ data.cancelText }}</button>
-      <button mat-button [color]="data.okColor" [mat-dialog-close]="true" cdkFocusInitial>{{ data.okText }}</button>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button [mat-dialog-close]="false">{{ data.cancelText }}</button>
+      <button mat-raised-button [color]="data.okColor" [mat-dialog-close]="true" cdkFocusInitial>{{ data.okText }}</button>
     </mat-dialog-actions>`,
 })
 export class ConfirmationComponent {
