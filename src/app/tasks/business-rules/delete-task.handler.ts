@@ -33,8 +33,6 @@ export class DeleteTaskHandler {
 
 
                  await this.repository.delete(task.id);
-                 /*  this.confirmation
-                   .confirmDelete('Are you really want to delete/update/create?') */
 
                  resolve(confirmed);
 
