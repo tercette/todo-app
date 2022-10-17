@@ -11,7 +11,7 @@ export class TaskRepository {
 
   create(task: ITask): Promise<ITask> {
     return this.httpClient
-      .post<ITask>(`${environment.api}/tasks`, task)
+      .post<ITask>(`${environment.api}/tasks.json`, task)
       .toPromise();
   }
 
@@ -30,7 +30,7 @@ export class TaskRepository {
 
   getAll(): Promise<ITask[]> {
     return this.httpClient
-      .get<ITask[]>(`${environment.api}/tasks/`)
+      .get<ITask[]>(`${environment.api}/tasks.json/`)
       .toPromise();
   }
 

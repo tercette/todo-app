@@ -32,7 +32,7 @@ export class TaskListPageComponent implements OnInit {
   async getAllTasks(): Promise<void> {
     const tasks = await this.getTasksHandler.execute();
     if (tasks) {
-      this.tasks = tasks;
+      this.tasks = Object.values(tasks) ;
     } else {
       this.tasks = [];
     }
