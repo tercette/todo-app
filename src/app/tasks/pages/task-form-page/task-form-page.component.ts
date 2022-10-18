@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-task-form-page',
   templateUrl: './task-form-page.component.html',
@@ -39,8 +38,7 @@ export class TaskFormPageComponent implements OnInit {
     private activatedRouter: ActivatedRoute,
     private createTaskHandler: CreateTaskHandler,
     private updateTaskHandler: UpdateTaskHandler,
-    private getTaskHandler: GetTaskHandler,
-
+    private getTaskHandler: GetTaskHandler
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -62,26 +60,22 @@ export class TaskFormPageComponent implements OnInit {
         description: response.description,
         done: response.done,
       });
-
     }
-
   }
 
   async onSubmit(): Promise<void> {
     const taskToSave: ITask = {
       ...this.form.value, // pegando todos os valores do formulário
-      id: this.taskId, // atualizando o id caso exista
     };
-    let response: ITask | Boolean
 
-
-    if (taskToSave.id) {
-      response = await this.updateTaskHandler.execute(taskToSave);
+    if (location.pathname.includes('edit')) {
+      const id = this.activatedRouter.snapshot.paramMap.get('id');
+      await this.updateTaskHandler.execute({ ...taskToSave, id });
     } else {
-      response = await this.createTaskHandler.execute(taskToSave);
-    }
-
+      await this.createTaskHandler.execute({
+        ...taskToSave,
+        id: new Date().getTime().toString(),
+      });
     }
   }
-
-
+}

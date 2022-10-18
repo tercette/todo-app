@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  
-  api: "https://todoapp-4bd7c-default-rtdb.firebaseio.com/"
 
+  api: 'https://todoapp-4bd7c-default-rtdb.firebaseio.com',
 };
 
 /*
