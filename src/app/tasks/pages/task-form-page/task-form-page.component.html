@@ -3,17 +3,17 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="form-container">
     <mat-form-field>
-      <mat-label>Título</mat-label>
+      <mat-label>Titolo</mat-label>
       <input type="text" matInput [formControl]="title" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Descrição</mat-label>
+      <mat-label>Descrizione</mat-label>
       <input type="text" matInput [formControl]="description" />
     </mat-form-field>
 
     <mat-slide-toggle color="primary" [formControl]="done">
-      {{ done.value ? 'Tarefa feita': 'Tarefa não feita' }}
+      {{ done.value ? 'Compito svolto': 'Compito non svolto' }}
     </mat-slide-toggle>
 
     <div class="form-button-container">
