@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  //api: "https://612eb869d11e5c0017558684.mockapi.io"
+  firebase: 'https://todoapp-4bd7c-default-rtdb.firebaseio.com',
 };

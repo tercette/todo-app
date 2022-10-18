@@ -11,31 +11,31 @@ export class TaskRepository {
 
   create(task: ITask): Promise<ITask> {
     return this.httpClient
-      .put<ITask>(`${environment.api}/tasks/${task.id}.json`, task)
+      .put<ITask>(`${environment.firebase}/tasks/${task.id}.json`, task)
       .toPromise();
   }
 
   update(task: ITask): Promise<ITask> {
     return this.httpClient
-      .patch<ITask>(`${environment.api}/tasks/${task.id}.json`, task)
+      .patch<ITask>(`${environment.firebase}/tasks/${task.id}.json`, task)
       .toPromise();
   }
 
   getById(id: string): Promise<ITask> {
     return this.httpClient
-      .get<ITask>(`${environment.api}/tasks/${id}.json  `)
+      .get<ITask>(`${environment.firebase}/tasks/${id}.json  `)
       .toPromise();
   }
 
   getAll(): Promise<ITask[]> {
     return this.httpClient
-      .get<ITask[]>(`${environment.api}/tasks.json`)
+      .get<ITask[]>(`${environment.firebase}/tasks.json`)
       .toPromise();
   }
 
   async delete(id: string): Promise<void> {
     await this.httpClient
-      .delete(`${environment.api}/tasks/${id}.json`)
+      .delete(`${environment.firebase}/tasks/${id}.json`)
       .toPromise();
     return;
   }
