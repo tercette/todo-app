@@ -17,7 +17,7 @@ export class TaskListPageComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<ITask> | undefined;
 
   tasks: ITask[] = [];
-  displayedColumns = ['id', 'title', 'description', 'done', 'action'];
+  displayedColumns = [ 'title', 'description', 'done', 'action'];
 
   constructor(
     private getTasksHandler: GetTasksHandler,

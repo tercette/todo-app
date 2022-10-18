@@ -72,12 +72,13 @@ export class TaskFormPageComponent implements OnInit {
 
     if (location.pathname.includes('edit')) {
       const id = this.activatedRouter.snapshot.paramMap.get('id');
+
       await this.updateTaskHandler.execute({ ...taskToSave, id })
       this.router.navigate([''])
     } else {
       await this.createTaskHandler.execute({
         ...taskToSave,
-        id: new Date().getTime().toString(),
+        id: new Date().getTime().toString().slice(10),
       });
     }
   }
