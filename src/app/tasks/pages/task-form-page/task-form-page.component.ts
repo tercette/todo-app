@@ -4,7 +4,7 @@ import { UpdateTaskHandler } from './../../business-rules/update-task.handler';
 import { CreateTaskHandler } from './../../business-rules/create-task.handler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-form-page',
@@ -38,8 +38,9 @@ export class TaskFormPageComponent implements OnInit {
     private activatedRouter: ActivatedRoute,
     private createTaskHandler: CreateTaskHandler,
     private updateTaskHandler: UpdateTaskHandler,
-    private getTaskHandler: GetTaskHandler
-  ) {}
+    private getTaskHandler: GetTaskHandler,
+    private router: Router
+    ) {}
 
   async ngOnInit(): Promise<void> {
     const paramId = this.activatedRouter.snapshot.paramMap.get('id');
@@ -61,6 +62,7 @@ export class TaskFormPageComponent implements OnInit {
         done: response.done,
       });
     }
+
   }
 
   async onSubmit(): Promise<void> {
@@ -70,7 +72,8 @@ export class TaskFormPageComponent implements OnInit {
 
     if (location.pathname.includes('edit')) {
       const id = this.activatedRouter.snapshot.paramMap.get('id');
-      await this.updateTaskHandler.execute({ ...taskToSave, id });
+      await this.updateTaskHandler.execute({ ...taskToSave, id })
+      this.router.navigate([''])
     } else {
       await this.createTaskHandler.execute({
         ...taskToSave,
