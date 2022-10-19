@@ -30,3 +30,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Firebase url
 
 https://todoapp-4bd7c-default-rtdb.firebaseio.com/
+
+## Firebase deploy procedure
+
+1 - npm install -g firebase-tools
+2 - ng build
+3 - firebase init todo-app 
+4 - firebase deploy   

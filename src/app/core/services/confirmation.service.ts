@@ -12,11 +12,11 @@ export class ConfirmationService {
 
   confirmDelete(itemDetail: string): Observable<boolean> {
     const data: IConfirmation = {
-      title: 'Attention',
-      message: `<strong>Would you like to delete this: <strong>${itemDetail}</strong>?`,
-      okText: 'Delete',
+      title: 'Attenzione',
+      message: `<strong>Vorresti eliminare questo titolo: <strong>${itemDetail}</strong>?`,
+      okText: 'Elimina',
       okColor: 'warn',
-      cancelText: 'Cancel',
+      cancelText: 'Annula',
       panelClass: 'confirm-dialog-container',
     };
 
@@ -35,10 +35,10 @@ export class ConfirmationService {
   confirmSave(itemDetail: string): Observable<boolean> {
     const data: IConfirmation = {
       title: 'Attention',
-      message: `<strong>Did you want to save?</strong>`,
-      okText: 'Save',
+      message: `<strong>Vuoi salvare?</strong>`,
+      okText: 'Salvare',
       okColor: 'warn',
-      cancelText: 'Cancel',
+      cancelText: 'Annula',
       panelClass: 'confirm-dialog-container'
     };
       return this.show(data);

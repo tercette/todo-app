@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./task-form-page.component.scss'],
 })
 export class TaskFormPageComponent implements OnInit {
-  pageTitle = 'Nova tarefa';
+  pageTitle = 'Nuovo compito';
 
   // configuração do formulário
   form = this.formBuild.group({
@@ -54,7 +54,7 @@ export class TaskFormPageComponent implements OnInit {
     const response = await this.getTaskHandler.execute(this.taskId || '');
 
     if (response) {
-      this.pageTitle = 'Editando tarefa';
+      this.pageTitle = 'Attività di modifica';
       // atualizando o formulário com os valores retornados pela api
       this.form.patchValue({
         title: response.title,

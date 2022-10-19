@@ -4,7 +4,7 @@ import { IConfirmation } from './iconfirmation';
 
 @Component({
   selector: 'app-confirmation',
-  template: ` <h1 align="center" mat-dialog-title>Warning</h1>
+  template: ` <h1 align="center" mat-dialog-title>Avvertimento</h1>
     <mat-dialog-content >
       <p [innerHTML]="data.message"></p>
     </mat-dialog-content>
